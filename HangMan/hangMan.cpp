@@ -5,7 +5,7 @@ using namespace std;
 
 const int max_misses = 6;
 
-// Message class for displaying messages and design
+// message class for displaying messages and design
 class Message {
 public:
 
@@ -17,9 +17,89 @@ public:
         cout << "Guess the Word" << endl << endl;
     }
 
-    // method to display the number of misses
     void display_misses(int misses) {
-        cout << "Remaining misses: " << max_misses - misses << endl << endl;
+
+        // add the body parts of the Hangman
+        // according to the number of misses
+        switch (misses) {
+
+            // display an empty gallows when misses = 0
+        case 0:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+
+            // draw the Hangman's head
+        case 1:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "  O   | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+
+            // draw the Hangman's torso
+        case 2:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "  O   | " << endl;
+            cout << "  |   | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+
+            // draw the Hangman's right arm
+        case 3:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "  O   | " << endl;
+            cout << " /|   | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+
+            // draw the Hangman's left arm
+        case 4:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "  O   | " << endl;
+            cout << " /|\\  | " << endl;
+            cout << "      | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+
+            // draw the Hangman's left leg
+        case 5:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "  O   | " << endl;
+            cout << " /|\\  | " << endl;
+            cout << " /    | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+
+            // draw the Hangman's right leg
+        case 6:
+            cout << "  +---+ " << endl;
+            cout << "  |   | " << endl;
+            cout << "  O   | " << endl;
+            cout << " /|\\  | " << endl;
+            cout << " / \\  | " << endl;
+            cout << "      | " << endl;
+            cout << "=========" << endl;
+            break;
+        }
     }
 
     // method to display the incorrect guesses
@@ -164,20 +244,20 @@ public:
 
     // method to display the game status
     void display_game_status() {
+        message.display_misses(misses);
         message.display_incorrect_guesses(incorrect);
         message.display_user_answer(user_answer);
-        message.display_misses(misses);
     }
 
     // method to display the final result
     void display_final_result() {
+        message.display_misses(misses);
         message.final_result(user_answer, word);
     }
 };
 
 int main() {
 
-    // create word database
     string library[] = {
         "ALGORITHM",
         "AUTOPSY",
@@ -189,6 +269,8 @@ int main() {
         "DISCRETE",
         "ANALYSIS",
         "CALCULUS"
+        "PROGRAMMING"
+        "MATHEMATICS"
     };
 
     // generate random numbers between 0 and 9
